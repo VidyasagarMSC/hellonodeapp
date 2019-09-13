@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/VidyasagarMSC/hellonodeapp/issues"
   },
-  "homepage": "https://github.com/VidyasagarMSC/hellonodeapp#readme"
+  "homepage": "https://github.com/VidyasagarMSC/hellonodeapp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
