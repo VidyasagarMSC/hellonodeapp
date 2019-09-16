@@ -16,7 +16,7 @@ node {
       srcTag: 'latest',
       destinationNamespace: 'testing',
       destStream: 'hellonodeapp',
-      destTag: 'test'
+      destTag: 'testing'
     openshiftVerifyDeployment depCfg: 'hellonodeapp',
       namespace: 'testing'
   }
@@ -30,7 +30,7 @@ node {
       srcTag: 'latest',
       destinationNamespace: 'production',
       destStream: 'hellonodeapp',
-      destTag: 'prod'
+      destTag: 'production'
     openshiftVerifyDeployment depCfg: 'hellonodeapp',
       namespace: 'production'
   }
