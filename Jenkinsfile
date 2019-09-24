@@ -1,4 +1,9 @@
 pipeline {
+    environment {
+    registry = "us.icr.io/vmac"
+    registryCredential = 'registryCredential'
+    dockerImage = ''
+  }
   agent any
   stages {
     stage('preamble') {
@@ -28,6 +33,7 @@ pipeline {
         }
       }
     }
+
 
     stage('approval (testing)') {
       steps {
@@ -62,11 +68,12 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject('testing') {
-              openshift.tag('hellonodeapp:testing', 'production/hellonodeapp:production')
+              openshift.tag('hellonodeapp:testing', 'us.icr.io/vmac/hellonodeapp:production')
             }
           }
         }
       }
     }
+
   }
 }
