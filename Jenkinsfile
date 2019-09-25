@@ -68,7 +68,7 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject('testing') {
-              openshift.tag('hellonodeapp:testing', 'us.icr.io/vmac/helloapp:prod')
+              openshift.tag('hellonodeapp:testing', 'helloapp:prod')
             }
           }
         }
