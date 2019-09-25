@@ -74,8 +74,8 @@ pipeline {
           openshift.withCluster() {
             openshift.withProject('testing') {
               openshift.tag('hellonodeapp:testing', 'production/hellonodeapp:production')
-              //sh 'docker tag production/hellonodeapp:production us.icr.io/vmac/hellonodeapp:prod'
-              dockerImage = docker.build registry + "hellonodeapp:prod"
+              sh 'docker tag production/hellonodeapp:production us.icr.io/vmac/hellonodeapp:prod'
+              dockerImage = "us.icr.io/vmac/hellonodeapp:prod"
             }
           }
         }
