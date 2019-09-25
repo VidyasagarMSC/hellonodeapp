@@ -78,11 +78,11 @@ pipeline {
       }
     }
 
-     stage('Deploy Image') {
-  steps{
-    script {
-      docker.withRegistry( 'https://us.icr.io', registryCredential ) {
-        dockerImage.push()
+    stage('Deploy Image') {
+     steps{
+       script {
+         docker.withRegistry( 'https://us.icr.io', registryCredential ) {
+         dockerImage.push()
       }
     }
   }
