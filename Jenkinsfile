@@ -71,7 +71,7 @@ pipeline {
             openshift.withProject('testing') {
               openshift.tag('hellonodeapp:testing', 'production/hellonodeapp:production')
               //sh 'docker tag production/hellonodeapp:production us.icr.io/vmac/hellonodeapp:prod'
-              dockerImage = 'vmac/hellonodeapp:prod'
+              dockerImage = docker.build registry + "hellonodeapp:prod"
             }
           }
         }
@@ -81,7 +81,7 @@ pipeline {
     stage('Deploy Image') {
      steps{
        script {
-         docker.withRegistry( 'https://us.icr.io', registryCredential ) {
+         docker.withRegistry( '', registryCredential ) {
          dockerImage.push()
       }
     }
