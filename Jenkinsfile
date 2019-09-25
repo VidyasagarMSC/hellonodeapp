@@ -27,6 +27,7 @@ pipeline {
               // will be inoperative for the various selector operations.
               // Consider removing those options from startBuild and using the logs()
               // command to follow the build output.
+              //docker.build("vmac/hellonodeapp")
               openshift.selector('bc', 'hellonodeapp').startBuild('--follow', '--wait')
             }
           }
@@ -68,12 +69,21 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject('testing') {
-              openshift.tag('hellonodeapp:testing', 'helloapp:prod')
+              dockerImage = openshift.tag('hellonodeapp:testing', 'vmac/hellonodeapp:production')
             }
           }
         }
       }
     }
 
+     stage('Deploy Image') {
+  steps{
+    script {
+      docker.withRegistry( 'https://us.icr.io', registryCredential ) {
+        dockerImage.push()
+      }
+    }
+  }
+}
   }
 }
