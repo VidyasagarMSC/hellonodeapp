@@ -4,9 +4,7 @@ pipeline {
     registryCredential = 'registryCredential'
     dockerImage = ''
   }
-  agent {
-   label 'docker'
-  }
+  agent any
   stages {
     stage('preamble') {
       steps {
