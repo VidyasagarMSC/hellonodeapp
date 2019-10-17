@@ -4,10 +4,10 @@ pipeline {
     stage('preamble') {
       steps {
         script {
-          sh 'oc new-project development'
-          sh 'oc new-project testing'
-          sh 'oc new-project production'
           openshift.withCluster() {
+            sh 'oc new-project development'
+            sh 'oc new-project testing'
+            sh 'oc new-project production'
             openshift.withProject() {
               echo "Using project: ${openshift.project()}"
             }
