@@ -1,6 +1,11 @@
-var http = require('http');
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World!!\n');
-}).listen(8080);
-console.log('Server running at http://localhost:8080/');
+var http = require( 'http' )
+var proxiedHttp = require( 'findhit-proxywrap' ).proxy( http )
+var express = require( 'express' )
+var app = express()
+ 
+// instead of http.createServer(app)
+var srv = proxiedHttp.createServer( app ).listen( 8080 )
+ 
+app.get( '/', ( req, res ) => {
+    res.send( 'IP = ' + req.connection.remoteAddress + ':' + req.connection.remotePort )
+})
